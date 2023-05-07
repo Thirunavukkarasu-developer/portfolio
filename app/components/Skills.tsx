@@ -8,7 +8,7 @@ function Skills() {
           Skills
         </h2>
         <div className="space-y-10">
-          <div className="flex justify-between items-center">
+          <div className="flex  flex-wrap justify-between items-center gap-10">
             <div>HTML</div>
             <div>CSS</div>
             <div>TailwindCSS</div>
