@@ -8,23 +8,23 @@ function Skills() {
           Skills
         </h2>
         <div className="space-y-10">
-          <div className="flex  flex-wrap justify-between items-center gap-10 md:gap-0">
-            <div>HTML</div>
-            <div>CSS</div>
-            <div>TailwindCSS</div>
-            <div>Javascript</div>
-            <div>React</div>
-            <div>Node.js</div>
-          </div>
-          <div className="flex items-center gap-10 md:gap-20">
-            <div>MongoDB</div>
-            <div>PostgreSQL</div>
-          </div>
-          <div className="flex items-center gap-10 md:gap-20">
-            <div>Git</div>
-            <div>Docker</div>
-            <div>Figma</div>
-          </div>
+          <ul className="flex  flex-wrap justify-between items-center gap-10 md:gap-0">
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>TailwindCSS</li>
+            <li>Javascript</li>
+            <li>React</li>
+            <li>Node.js</li>
+          </ul>
+          <ul className="flex items-center gap-10 md:gap-20">
+            <li>MongoDB</li>
+            <li>PostgreSQL</li>
+          </ul>
+          <ul className="flex items-center gap-10 md:gap-20">
+            <li>Git</li>
+            <li>Docker</li>
+            <li>Figma</li>
+          </ul>
         </div>
       </div>
     </div>
