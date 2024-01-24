@@ -24,6 +24,7 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
+    "@cloudflare/next-on-pages": "^1.8.5",
     "eslint-config-prettier": "^8.8.0"
   }
 }
