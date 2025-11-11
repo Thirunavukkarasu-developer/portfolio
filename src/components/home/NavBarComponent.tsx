@@ -1,7 +1,7 @@
 function NavBarComponent() {
   return <nav className="bg-white dark:bg-gray-900">
     <div
-      className="max-w-5xl flex flex-wrap items-center justify-between mx-auto p-4 border border-green-500"
+      className="max-w-5xl flex flex-wrap items-center justify-between mx-auto py-4 px-5 md:px-7 lg:px-10"
     >
       <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
         <span className="self-center text-xl font-mono font-medium whitespace-nowrap dark:text-white">thiruna.com</span>
