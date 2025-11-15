@@ -5,7 +5,7 @@ draft: false
 authors:
 - thiruna
 description: Monitoring frontend errors is crucial for delivering high-quality user experiences in modern web applications. TrackJS is a powerful JavaScript error tracking tool that helps developers capture, diagnose, and resolve frontend issues in real-time. 
-popularTags: In this blog, you’ll learn how to integrate TrackJS into an Angular 9 application with Server-Side Rendering (SSR). We’ll walk through installation, configuration, and usage—including optional server-side error handling techniques.
+popularTags: Angular 9, SSR
 ---
 
 ### 🛠 How to Integrate TrackJS with Angular 9 SSR for Robust Frontend Error Monitoring

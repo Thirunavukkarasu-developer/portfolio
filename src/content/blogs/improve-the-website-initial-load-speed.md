@@ -5,7 +5,7 @@ draft: false
 authors:
 - thiruna
 description: I recently faced a problem with my Angular 9 Universal (Server-Side Rendering) e-commerce website. When users landed on the first page, they saw a flicker or re-render before the content settled.
-popularTags: In this blog, I'll share what caused the problem how I fixed it -- in simple steps.
+popularTags: Angular 9, Flicker, SSR
 ---
 
 #### How I Fixed Page Flickering Issues in My Angular 9 SSR E-commerce Website
