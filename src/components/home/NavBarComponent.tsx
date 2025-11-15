@@ -8,7 +8,7 @@ function NavBarComponent() {
       <div className="max-w-5xl flex flex-wrap items-center justify-between mx-auto py-4 px-5 md:px-7 lg:px-10">
         {/* Logo */}
         <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
-          <span className="self-center text-xl font-mono font-medium whitespace-nowrap dark:text-white">
+          <span className="self-center text-xl font-medium whitespace-nowrap dark:text-white">
             thiruna.com
           </span>
         </a>
@@ -66,7 +66,7 @@ function NavBarComponent() {
           className={`${isOpen ? "block" : "hidden"} w-full md:block md:w-auto`}
           id="navbar-default"
         >
-          <ul className="font-mono font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white">
+          <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white">
             <li>
               <a
                 href="/"
