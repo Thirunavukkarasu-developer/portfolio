@@ -1,7 +1,13 @@
 import { useState } from "react";
 
-function NavBarComponent() {
+function NavBarComponent({ currentPath }: any) {
+  console.log("==> currentPath:", currentPath)
   const [isOpen, setIsOpen] = useState(false);
+
+  const isActive = (route: string) =>
+    currentPath === route || currentPath.startsWith(route + "/")
+      ? "text-blue-700 md:text-blue-700 font-semibold"
+      : "text-gray-900 dark:text-white";
 
   return (
     <nav className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
@@ -70,7 +76,7 @@ function NavBarComponent() {
             <li>
               <a
                 href="/"
-                className="block py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500"
+                className={`block py-2 px-3 ${isActive("/")}`}
                 aria-current="page"
               >
                 Home
@@ -79,7 +85,7 @@ function NavBarComponent() {
             <li>
               <a
                 href="/projects"
-                className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+                className={`block py-2 px-3 ${isActive("/projects")}`}
               >
                 Projects
               </a>
@@ -87,7 +93,7 @@ function NavBarComponent() {
             <li>
               <a
                 href="/blogs"
-                className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+                className={`block py-2 px-3 ${isActive("/blogs")}`}
               >
                 Blogs
               </a>
@@ -95,7 +101,7 @@ function NavBarComponent() {
             <li>
               <a
                 href="/contact"
-                className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+                className={`block py-2 px-3 ${isActive("/contact")}`}
               >
                 Contact
               </a>
@@ -103,7 +109,7 @@ function NavBarComponent() {
             <li>
               <a
                 href="/my-resume"
-                className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+                className={`block py-2 px-3 ${isActive("/my-resume")}`}
               >
                 My Resume
               </a>

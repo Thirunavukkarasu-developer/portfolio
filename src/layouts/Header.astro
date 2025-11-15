@@ -2,4 +2,4 @@
 import NavBarComponent from '../components/home/NavBarComponent'
 ---
 
-<NavBarComponent client:load />
+<NavBarComponent currentPath={Astro.url.pathname} client:load />
