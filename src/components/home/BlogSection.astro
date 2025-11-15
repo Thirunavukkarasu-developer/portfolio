@@ -17,9 +17,12 @@ posts.sort(
 	<div class="mb-6 flex items-center justify-between">
 		<h3 class="text-3xl">Recent Writing</h3>
 		{
-			posts.length ? <a href="/blogs" class="underline cursor-pointer">View All</a> : null
+			posts.length ? (
+				<a href="/blogs" class="underline cursor-pointer">
+					View All
+				</a>
+			) : null
 		}
-		
 	</div>
 
 	{
@@ -34,7 +37,12 @@ posts.sort(
 									<time
 										datetime={post.data.publishedDate.toISOString()}
 									>
-										{post.data.publishedDate.toDateString()}
+										{new Intl.DateTimeFormat("en-US", {
+											weekday: "short",
+											month: "short",
+											day: "2-digit",
+											year: "numeric",
+										}).format(post.data.publishedDate)}
 									</time>
 									{popularTags?.map((tag) => (
 										<span class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100 dark:bg-gray-800/60 dark:text-gray-300 dark:hover:bg-gray-800">
