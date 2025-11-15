@@ -5,7 +5,7 @@ function NavBarComponent() {
 
   return (
     <nav className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
-      <div className="max-w-5xl flex flex-wrap items-center justify-between mx-auto py-4 px-5 md:px-7 lg:px-10">
+      <div className="max-w-5xl flex flex-wrap items-center justify-between mx-auto py-4 px-5 md:px-7 lg:px-8">
         {/* Logo */}
         <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
           <span className="self-center text-xl font-medium whitespace-nowrap dark:text-white">
