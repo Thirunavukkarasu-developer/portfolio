@@ -86,7 +86,7 @@ function NavBarComponent() {
             </li>
             <li>
               <a
-                href="blogs"
+                href="/blogs"
                 className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
               >
                 Blogs
@@ -94,7 +94,7 @@ function NavBarComponent() {
             </li>
             <li>
               <a
-                href="contact"
+                href="/contact"
                 className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
               >
                 Contact
@@ -102,7 +102,7 @@ function NavBarComponent() {
             </li>
             <li>
               <a
-                href="my-resume"
+                href="/my-resume"
                 className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
               >
                 My Resume

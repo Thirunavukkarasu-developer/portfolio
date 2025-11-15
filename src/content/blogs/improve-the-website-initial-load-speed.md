@@ -1,5 +1,5 @@
 ---
-title: Improve the website initial load speed
+title: How I Fixed Page Flickering Issues in My Angular 9 SSR E-commerce Website
 publishedDate: 2025-11-07
 draft: false
 authors:
@@ -8,14 +8,14 @@ description: I recently faced a problem with my Angular 9 Universal (Server-Side
 popularTags: Angular 9, Flicker, SSR
 ---
 
-#### How I Fixed Page Flickering Issues in My Angular 9 SSR E-commerce Website
+### How I Fixed Page Flickering Issues in My Angular 9 SSR E-commerce Website
 
-##### Introduction
+#### Introduction
 I recently faced a problem with my Angular 9 Universal (Server-Side Rendering) e-commerce website. When users landed on the first page, they saw a flicker or re-render before the content settled. After some investigation, I found a few issues related to dynamic routes, lazy loading and missing server-side data.
 
 In this blog, I'll share what caused the problem how I fixed it -- in simple steps.
 
-###### My Setup
+#### My Setup
 - **Framework**: Angular 9 Universal (SSR)
 - **Node Version**: Node 12
 - **Website**: Single codebase, but different UI for different stores (based on store ID from API)
@@ -38,8 +38,8 @@ const routes: Routes = [
 ];
 ```
 
-##### Problems I Faced
-###### 1. User Info Resolver (UserInfoResolver) Failing on SSR
+#### Problems I Faced
+##### 1. User Info Resolver (UserInfoResolver) Failing on SSR
 I had a resolver (UserInfoResolver) that fetched user information using an API. However, it only worked on the browser side, not during server-side rendering. On the server side, this resolver returned undefined, so the browser tried to resolve it again, which caused the page to reload.
 
 Here was the problematic code:
@@ -61,8 +61,8 @@ My landing (home) page was lazily loaded. This caused extra delays when the firs
 I hadn’t properly set up the ServerTransferStateModule. Without it, there was no easy way to transfer server-fetched data to the browser, causing unnecessary re-fetches.
 
 
-###### How I Fixed It
-###### 1. Fixed UserInfoResolver
+#### How I Fixed It
+##### 1. Fixed UserInfoResolver
 I updated the getUserInfo() method so that it runs both on the server and the browser:
 ```js
 getUserInfo() {
@@ -71,7 +71,7 @@ getUserInfo() {
 ```
 Now, the user info is fetched during server-side rendering too, fixing the missing data issue.
 
-###### 2. Removed Lazy Loading for the Home Page
+##### 2. Removed Lazy Loading for the Home Page
 I changed the routing setup for the home page. Instead of lazy loading, I directly loaded the HomePageComponent:
 ```js
 const routes: Routes = [
@@ -90,7 +90,7 @@ const routes: Routes = [
 ```
 This helped make the first-page loading much faster and smoother.
 
-###### 3. Added ServerTransferStateModule
+##### 3. Added ServerTransferStateModule
 I updated the ***app.server.module.ts*** to include ServerTransferStateModule.
 This allowed the server-rendered data to be passed properly to the client, avoiding double API calls.
 ```js
@@ -105,14 +105,14 @@ import { ServerTransferStateModule } from '@angular/platform-server';
 export class AppServerModule {}
 ```
 
-###### Result
+#### Result
 After making these changes:
 - The flickering issue on the home page stopped completely.
 - Server-side and client-side data stayed in sync.
 - Nested routes and resolvers also worked properly without any unexpected reloads.
 
 
-###### Final Thoughts
+#### Final Thoughts
 If you are facing flickering or re-render issues in your Angular Universal (SSR) application, make sure you:
 
 - Properly fetch and resolve all required data on the server side.
