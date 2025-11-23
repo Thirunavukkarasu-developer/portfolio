@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@plugin "@tailwindcss/typography";
+
+
+/* scrollbar to appear only when content actually scrolls (but still avoid flicker) */
+html {
+    scrollbar-gutter: stable;
+    scroll-behavior: smooth;
+}
