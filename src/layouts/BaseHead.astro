@@ -8,7 +8,6 @@ const { title, description } = Astro.props;
 
 const siteDescription = description;
 const pageTitle = title;
-
 ---
 
 <head>
@@ -21,4 +20,35 @@ const pageTitle = title;
   <meta name="title" content={pageTitle} />
   <meta name="description" content={siteDescription} />
   <title>{title}</title>
+
+  <!-- Twitter/X -->
+  <meta property="twitter:site" content="@Thiruna71130029" />
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://x.com/Thiruna71130029" />
+  <meta property="twitter:title" content={pageTitle} />
+  <meta property="twitter:description" content={siteDescription} />
+  <meta
+    property="twitter:image"
+    content="https://x.com/Thiruna71130029/photo"
+  />
+
+  <!-- LinkedIn / Open Graph -->
+  <meta property="og:type" content="profile" />
+  <meta property="og:title" content={pageTitle} />
+  <meta property="og:description" content="I’m a senior software developer passionate about creating smooth web and mobile apps with React.js, React Native, Tailwind CSS, TypeScript, and Node.js." />
+  <meta
+    property="og:url"
+    content="https://www.linkedin.com/in/thiruna-developer/"
+  />
+  <meta
+    property="og:site_name"
+    content="E. Thirunavukkarasu | Senior Software Developer"
+  />
+
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta property="profile:first_name" content="Thirunavukkarasu" />
+  <meta property="profile:last_name" content="E." />
+  <meta property="profile:username" content="thirunavukkarasu" />
 </head>

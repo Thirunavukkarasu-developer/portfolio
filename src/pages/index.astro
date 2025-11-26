@@ -3,14 +3,17 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/700.css";
 import "@fontsource/roboto-mono/400.css";
 
-import Home from '../components/home/Home.astro';
-import Layout from '../layouts/Layout.astro';
+import Home from "../components/home/Home.astro";
+import Layout from "../layouts/Layout.astro";
 import "../styles/global.css";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const title = "Senior Full Stack Developer | React, Node.js, TypeScript Expert | Web & Mobile App Developer";
+const description =
+	"E.Thirunavukkarasu (thiruna.com) is a Senior Software Developer specializing in modern web and mobile app development using React, React Native, Node.js, TypeScript, Angular, MongoDB, PostgreSQL, and MySQL. Expert in building fast, scalable, and intuitive UI/UX with TailwindCSS and Material. Full-stack engineer delivering high-performance apps end-to-end.";
+
+export const prerender = true;
 ---
 
-<Layout>
+<Layout title={title} description={description}>
 	<Home />
 </Layout>
