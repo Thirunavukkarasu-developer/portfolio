@@ -2,9 +2,12 @@
 export interface Props {
   title?: string;
   description?: string;
+  publishedDate?: string;
+  authors?: string[];
+  tags?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, publishedDate, authors, tags } = Astro.props;
 
 const siteDescription = description;
 const pageTitle = title;
@@ -24,31 +27,72 @@ const pageTitle = title;
   <!-- Twitter/X -->
   <meta property="twitter:site" content="@Thiruna71130029" />
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content="https://x.com/Thiruna71130029" />
-  <meta property="twitter:title" content={pageTitle} />
-  <meta property="twitter:description" content={siteDescription} />
-  <meta
-    property="twitter:image"
-    content="https://x.com/Thiruna71130029/photo"
-  />
+   <meta property="twitter:url" content={Astro.url} />
+   <meta property="twitter:title" content={pageTitle} />
+   <meta property="twitter:description" content={siteDescription} />
+    <meta
+      property="twitter:image"
+      content="https://x.com/Thiruna71130029/photo"
+    />
 
-  <!-- LinkedIn / Open Graph -->
-  <meta property="og:type" content="profile" />
-  <meta property="og:title" content={pageTitle} />
-  <meta property="og:description" content="I’m a senior software developer passionate about creating smooth web and mobile apps with React.js, React Native, Tailwind CSS, TypeScript, and Node.js." />
-  <meta
-    property="og:url"
-    content="https://www.linkedin.com/in/thiruna-developer/"
-  />
-  <meta
-    property="og:site_name"
-    content="E. Thirunavukkarasu | Senior Software Developer"
-  />
+    <!-- LinkedIn / Open Graph -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={siteDescription} />
+    <meta property="og:image" content="https://www.linkedin.com/in/thiruna-developer" />
+    <meta
+      property="og:url"
+      content={Astro.url}
+    />
+   <meta
+     property="og:site_name"
+     content="E. Thirunavukkarasu | Senior Software Developer"
+   />
 
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
+   <meta property="og:image:width" content="1200" />
+   <meta property="og:image:height" content="630" />
 
-  <meta property="profile:first_name" content="Thirunavukkarasu" />
-  <meta property="profile:last_name" content="E." />
-  <meta property="profile:username" content="thirunavukkarasu" />
+   <meta property="profile:first_name" content="Thirunavukkarasu" />
+   <meta property="profile:last_name" content="E." />
+   <meta property="profile:username" content="thirunavukkarasu" />
+
+   {publishedDate && (
+     <>
+       <meta property="article:author" content={authors ? authors.join(", ") : "E. Thirunavukkarasu"} />
+       <meta property="article:published_time" content={publishedDate} />
+       {tags && tags.split(',').map(tag => <meta property="article:tag" content={tag.trim()} />)}
+     </>
+   )}
+
+   <link rel="canonical" href={Astro.url} />
+
+   <script type="application/ld+json">
+   {
+     "@context": "https://schema.org",
+     "@type": "Person",
+     "name": "E. Thirunavukkarasu",
+     "jobTitle": "Senior Full Stack Developer",
+     "url": "https://thiruna.com",
+     "sameAs": ["https://linkedin.com/in/thiruna-developer", "https://x.com/Thiruna71130029"]
+   }
+   </script>
+
+   {publishedDate && (
+     <script type="application/ld+json">
+     {{
+       "@context": "https://schema.org",
+       "@type": "Article",
+       "headline": title,
+       "description": description,
+       "author": authors ? authors.map(author => ({ "@type": "Person", "name": author })) : [{ "@type": "Person", "name": "E. Thirunavukkarasu" }],
+       "datePublished": publishedDate,
+       "url": Astro.url,
+       "publisher": {
+         "@type": "Person",
+         "name": "E. Thirunavukkarasu"
+       },
+       "keywords": tags || ""
+     }}
+     </script>
+   )}
 </head>

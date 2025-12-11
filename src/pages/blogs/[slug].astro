@@ -21,7 +21,7 @@ export async function getStaticPaths() {
 }
 ---
 
-<Layout title={post.data.title} description={post.data.description}>
+<Layout title={post.data.title} description={post.data.description} publishedDate={post.data.publishedDate.toISOString()} authors={post.data.authors} tags={post.data.popularTags}>
     <article class="prose prose-lg max-w-5xl mx-auto px-5 sm:px-6 lg:px-8 mt-10">
         <Content />
     </article>

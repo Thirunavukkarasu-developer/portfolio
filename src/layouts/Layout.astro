@@ -7,15 +7,18 @@ import Header from "./Header.astro";
 export interface Props {
 	title?: string;
 	description?: string;
+	publishedDate?: string;
+	authors?: string[];
+	tags?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, publishedDate, authors, tags } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={title} description={description} />
+		<BaseHead title={title} description={description} publishedDate={publishedDate} authors={authors} tags={tags} />
 	</head>
 	<body class="font-mono min-h-screen flex flex-col">
 		<Header />
