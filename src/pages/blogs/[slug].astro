@@ -30,7 +30,7 @@ const popularTags = post.data.popularTags?.split(",");
     authors={post.data.authors} 
     tags={post.data.popularTags}
 >
-    <article class="max-w-4xl mx-auto px-5 sm:px-6 lg:px-8 py-10">
+    <article class="max-w-5xl mx-auto px-5 sm:px-6 lg:px-8 py-10">
         <!-- Article Header -->
         <header class="mb-10 animate-fade-in-up">
             <!-- Back link -->
@@ -56,7 +56,7 @@ const popularTags = post.data.popularTags?.split(",");
                         year: "numeric",
                     }).format(post.data.publishedDate)}
                 </time>
-                {popularTags?.map((tag) => (
+                {popularTags?.map((tag: string) => (
                     <span class="rounded-full bg-blue-50 dark:bg-blue-900/30 px-3 py-1 text-xs font-medium text-blue-700 dark:text-blue-300 border border-blue-100 dark:border-blue-800">
                         {tag.trim()}
                     </span>

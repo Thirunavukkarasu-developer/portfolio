@@ -51,7 +51,7 @@ const contactMethods = [
         href={contact.href}
         target={contact.href.startsWith("mailto") ? undefined : "_blank"}
         rel={contact.href.startsWith("mailto") ? undefined : "noopener noreferrer"}
-        class={`group card-hover p-5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800/50 ${contact.color} transition-all duration-300 animate-fade-in-up delay-${(index + 1) * 100}`}
+        class={`group card-hover p-5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800/50 ${contact.color} transition-all duration-300 animate-fade-in-up`}
       >
         <div class="flex items-start gap-4">
           <!-- Icon -->

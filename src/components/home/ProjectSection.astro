@@ -41,12 +41,12 @@ const projects = [
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
     {projects.map((project, index) => (
       <article 
-        class={`group card-hover bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden animate-fade-in-up delay-${(index + 1) * 100}`}
+        class="group card-hover bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden animate-fade-in-up"
       >
         <!-- Image container with overlay -->
         <div class="relative overflow-hidden">
           <img
-            class="object-cover object-center w-full h-56 transition-transform duration-500 group-hover:scale-110"
+            class="object-cover object-center w-full h-56"
             src={project.image}
             alt={`${project.title} project screenshot`}
             loading="lazy"
@@ -80,8 +80,8 @@ const projects = [
         <div class="p-5 space-y-4">
           <!-- Tags -->
           <div class="flex flex-wrap gap-2">
-            {project.tags.map((tag) => (
-              <span class="inline-flex items-center rounded-full bg-blue-50 dark:bg-blue-900/30 px-3 py-1 text-xs font-medium text-blue-700 dark:text-blue-300 border border-blue-100 dark:border-blue-800">
+            {project.tags.slice(0, 2).map((tag) => (
+              <span class="inline-flex items-center rounded-full px-3 py-1 text-xs font-medium text-gray-600 dark:text-gray-400 border border-gray-300 dark:border-gray-600">
                 {tag}
               </span>
             ))}
