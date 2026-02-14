@@ -2,9 +2,364 @@
 
 @plugin "@tailwindcss/typography";
 
+/* Enable class-based dark mode for TailwindCSS v4 */
+@custom-variant dark (&:where(.dark, .dark *));
 
-/* scrollbar to appear only when content actually scrolls (but still avoid flicker) */
+/* ===== CSS Variables for Theming ===== */
+:root {
+    /* Primary colors - Clean blue theme */
+    --color-primary: #2563eb;
+    --color-primary-hover: #1d4ed8;
+    --color-accent: #3b82f6;
+
+    /* Light mode colors */
+    --color-bg: #ffffff;
+    --color-bg-secondary: #f9fafb;
+    --color-bg-card: #ffffff;
+    --color-text: #111827;
+    --color-text-secondary: #4b5563;
+    --color-text-muted: #6b7280;
+    --color-border: #e5e7eb;
+    --color-border-hover: #d1d5db;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+.dark {
+    --color-bg: #0f172a;
+    --color-bg-secondary: #1e293b;
+    --color-bg-card: #1e293b;
+    --color-text: #f1f5f9;
+    --color-text-secondary: #cbd5e1;
+    --color-text-muted: #94a3b8;
+    --color-border: #334155;
+    --color-border-hover: #475569;
+
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.3);
+}
+
+/* ===== Base Styles ===== */
 html {
     scrollbar-gutter: stable;
     scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
+}
+
+/* ===== Animation Keyframes ===== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes pulse-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--color-primary), 0 0 10px var(--color-primary);
+    }
+
+    50% {
+        box-shadow: 0 0 20px var(--color-primary), 0 0 30px var(--color-primary);
+    }
+}
+
+@keyframes gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* ===== Animation Utility Classes ===== */
+.animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-fade-in-down {
+    animation: fadeInDown 0.6s ease-out forwards;
+}
+
+.animate-fade-in-left {
+    animation: fadeInLeft 0.6s ease-out forwards;
+}
+
+.animate-fade-in-right {
+    animation: fadeInRight 0.6s ease-out forwards;
+}
+
+.animate-scale-in {
+    animation: scaleIn 0.5s ease-out forwards;
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Initially hidden for animation */
+.animate-on-scroll {
+    opacity: 0;
+}
+
+.animate-on-scroll.animated {
+    opacity: 1;
+}
+
+/* ===== Interactive Elements ===== */
+.link-hover {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.link-hover::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+    transition: width 0.3s ease;
+}
+
+.link-hover:hover::after {
+    width: 100%;
+}
+
+/* Card hover effects */
+.card-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Button styles */
+.btn-primary {
+    background-color: var(--color-primary);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-md);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Accent text - clean solid color instead of gradient */
+.gradient-text {
+    color: var(--color-primary);
+}
+
+.dark .gradient-text {
+    color: #60a5fa;
+}
+
+/* ===== Glassmorphism ===== */
+.glass {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass {
+    background: rgba(30, 41, 59, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ===== Social Icon Styles ===== */
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    color: var(--color-text-secondary);
+}
+
+.social-icon:hover {
+    transform: translateY(-3px);
+    color: var(--color-primary);
+}
+
+.social-icon svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+/* ===== Code Block Styles ===== */
+/* Reset any line highlighting in code blocks */
+.prose pre {
+    background-color: #1e293b !important;
+}
+
+.prose pre code {
+    background: transparent !important;
+    color: #e2e8f0 !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    font-size: 0.875rem !important;
+    line-height: 1.7 !important;
+}
+
+.prose pre code * {
+    background: transparent !important;
+}
+
+/* Remove any line highlighting */
+.prose pre code .line,
+.prose pre code span,
+.prose pre code div {
+    background: transparent !important;
+}
+
+/* Highlighted/selected lines in code */
+.prose pre code .line.highlighted,
+.prose pre code .highlighted {
+    background: rgba(59, 130, 246, 0.1) !important;
+    border-left: 2px solid #3b82f6;
+    margin-left: -1rem;
+    padding-left: calc(1rem - 2px);
+}
+
+/* Dark mode code blocks */
+.dark .prose pre {
+    background-color: #0f172a !important;
+}
+
+.dark .prose pre code {
+    color: #e2e8f0 !important;
+}
+
+/* Inline code - ensure it doesn't get affected */
+.prose :not(pre)>code {
+    background-color: #fef2f2 !important;
+    color: #dc2626 !important;
+    padding: 0.125rem 0.375rem !important;
+    border-radius: 0.375rem !important;
+    font-size: 0.875em !important;
+    font-weight: 500 !important;
+}
+
+.dark .prose :not(pre)>code {
+    background-color: rgba(220, 38, 38, 0.15) !important;
+    color: #fca5a5 !important;
 }

@@ -2,71 +2,105 @@
 import { getCollection } from "astro:content";
 
 let posts = await getCollection("blogs", ({ data }: any) => {
-	return data.draft !== true;
+  return data.draft !== true;
 });
 
 posts.sort(
-	(a, b) => b.data.publishedDate.getTime() - a.data.publishedDate.getTime(),
+  (a, b) => b.data.publishedDate.getTime() - a.data.publishedDate.getTime(),
 );
 ---
 
-<div
-	id="blogs"
-	class="max-w-5xl mx-auto px-5 sm:px-6 lg:px-8 overflow-x-hidden"
+<section
+  id="blogs"
+  class="max-w-5xl mx-auto px-5 sm:px-6 lg:px-8"
 >
-	<div class="mb-6 flex items-center justify-between">
-		<h3 class="text-3xl">Recent Writing</h3>
-		{
-			posts.length ? (
-				<a href="/blogs" class="underline cursor-pointer">
-					View All
-				</a>
-			) : null
-		}
-	</div>
+  <div class="mb-8 flex items-center justify-between animate-fade-in-up">
+    <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+      Recent <span class="gradient-text">Writing</span>
+    </h2>
+    {
+      posts.length ? (
+        <a 
+          href="/blogs" 
+          class="group inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium transition-colors duration-300"
+        >
+          View All
+          <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+      ) : null
+    }
+  </div>
 
-	{
-		posts.length ? (
-			<div class="space-y-12">
-				{posts.map((post) => {
-					const popularTags = post.data.popularTags?.split(",");
-					return (
-						<article class="flex flex-col md:flex-row items-start md:items-center gap-8 pb-8">
-							<div class="flex flex-col justify-between">
-								<div class="flex items-center gap-x-4 text-sm">
-									<time
-										datetime={post.data.publishedDate.toISOString()}
-									>
-										{new Intl.DateTimeFormat("en-US", {
-											weekday: "short",
-											month: "short",
-											day: "2-digit",
-											year: "numeric",
-										}).format(post.data.publishedDate)}
-									</time>
-									{popularTags?.map((tag) => (
-										<span class="relative z-10 rounded-full bg-gray-100 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100 dark:bg-gray-800/60 dark:text-gray-300 dark:hover:bg-gray-800">
-											{tag}
-										</span>
-									))}
-								</div>
-								<h3 class="mt-3 text-lg font-semibold text-gray-900 group-hover:text-gray-600 dark:text-white dark:group-hover:text-gray-300 hover:underline">
-									<a href={`/blogs/${post.slug}`}>
-										{post.data.title}
-									</a>
-								</h3>
-								<p class="mt-3 text-md text-gray-700 dark:text-gray-400 line-clamp-3 leading-10">
-									{post.data.description}
-								</p>
-							</div>
-						</article>
-					);
-				})}
-			</div>
-		) : (
-			<p class="text-xl">No recent post!</p>
-		)
-	}
+  {
+    posts.length ? (
+      <div class="space-y-6">
+        {posts.map((post, index) => {
+          const popularTags = post.data.popularTags?.split(",");
+          return (
+            <article 
+              class="group card-hover p-5 rounded-xl bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 animate-fade-in-up"
+            >
+              <div class="flex flex-col gap-4">
+                <!-- Meta info -->
+                <div class="flex flex-wrap items-center gap-3 text-sm">
+                  <time
+                    datetime={post.data.publishedDate.toISOString()}
+                    class="text-gray-500 dark:text-gray-400"
+                  >
+                    {new Intl.DateTimeFormat("en-US", {
+                      month: "short",
+                      day: "2-digit",
+                      year: "numeric",
+                    }).format(post.data.publishedDate)}
+                  </time>
+                  {popularTags?.map((tag) => (
+                    <span class="rounded-full bg-blue-50 dark:bg-blue-900/30 px-3 py-1 text-xs font-medium text-blue-700 dark:text-blue-300 border border-blue-100 dark:border-blue-800">
+                      {tag.trim()}
+                    </span>
+                  ))}
+                </div>
+                
+                <!-- Title -->
+                <h3 class="text-lg md:text-xl font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
+                  <a href={`/blogs/${post.slug}`} class="hover:underline underline-offset-4">
+                    {post.data.title}
+                  </a>
+                </h3>
+                
+                <!-- Description -->
+                <p class="text-gray-600 dark:text-gray-400 line-clamp-2 leading-relaxed">
+                  {post.data.description}
+                </p>
+                
+                <!-- Read more link -->
+                <a 
+                  href={`/blogs/${post.slug}`}
+                  class="inline-flex items-center gap-1 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors duration-300 group/link"
+                >
+                  Read article
+                  <svg class="w-4 h-4 transition-transform duration-300 group-hover/link:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    ) : (
+      <div class="text-center py-12 animate-fade-in-up">
+        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
+          <svg class="w-8 h-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+          </svg>
+        </div>
+        <p class="text-xl text-gray-600 dark:text-gray-400">No recent posts yet!</p>
+        <p class="text-gray-500 dark:text-gray-500 mt-2">Check back later for new articles.</p>
+      </div>
+    )
+  }
 
 	<div class="space-y-12 hidden">
 		<!-- Article 1 -->
