@@ -1,11 +1,11 @@
 ---
 title: How to Set and Read Cookies in Angular 9 Universal (SSR) - Fix Missing Token on Server Side
 publishedDate: 2025-11-01
-draft: true
+draft: false
 authors:
 - thiruna
 description: Angular 9 Universal app with Server-Side Rendering (SSR) and relying on cookies (e.g. for authentication tokens) 
-popularTags: In this blog, you’ll learn how to properly set, read, and share cookies** between the browser and server in Angular 9 Universal using [ngx-cookie-service](https://www.npmjs.com/package/ngx-cookie-service), and how to fix the missing-token issue on SSR.
+popularTags: Angular 9, SSR
 ---
 
 If you’re building an Angular 9 Universal app with Server-Side Rendering (SSR) and relying on cookies (e.g. for authentication tokens), you may hit a common problem:
