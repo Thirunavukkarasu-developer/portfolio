@@ -1,6 +1,14 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
+import ViewCount from "../../components/blog/ViewCount";
+import ClapButton from "../../components/blog/ClapButton";
+import Comments from "../../components/blog/Comments";
+
+const API_BASE = import.meta.env.PUBLIC_API_BASE_URL || "";
+const GISCUS_REPO = import.meta.env.PUBLIC_GISCUS_REPO || "";
+const GISCUS_REPO_ID = import.meta.env.PUBLIC_GISCUS_REPO_ID || "";
+const GISCUS_CATEGORY_ID = import.meta.env.PUBLIC_GISCUS_CATEGORY_ID || "";
 
 const { post } = Astro.props;
 const { Content } = await post.render();
@@ -56,6 +64,8 @@ const popularTags = post.data.popularTags?.split(",");
                         year: "numeric",
                     }).format(post.data.publishedDate)}
                 </time>
+                <span class="text-gray-300 dark:text-gray-600">·</span>
+                <ViewCount client:load slug={post.slug} apiBase={API_BASE} />
                 {popularTags?.map((tag: string) => (
                     <span class="rounded-full bg-blue-50 dark:bg-blue-900/30 px-3 py-1 text-xs font-medium text-blue-700 dark:text-blue-300 border border-blue-100 dark:border-blue-800">
                         {tag.trim()}
@@ -135,6 +145,11 @@ const popularTags = post.data.popularTags?.split(",");
             <Content />
         </div>
 
+        <!-- Clap Section -->
+        <div class="mt-10 flex justify-center animate-fade-in-up delay-200">
+            <ClapButton client:load slug={post.slug} apiBase={API_BASE} />
+        </div>
+
         <!-- Article Footer -->
         <footer class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700 animate-fade-in-up delay-200">
             <!-- Share / Actions -->
@@ -187,5 +202,16 @@ const popularTags = post.data.popularTags?.split(",");
                 </a>
             </div>
         </footer>
+
+        <!-- Comments Section (Giscus) -->
+        {GISCUS_REPO && GISCUS_REPO_ID && GISCUS_CATEGORY_ID && (
+            <Comments
+                client:idle
+                repo={GISCUS_REPO}
+                repoId={GISCUS_REPO_ID}
+                categoryId={GISCUS_CATEGORY_ID}
+                term={post.slug}
+            />
+        )}
     </article>
 </Layout>
