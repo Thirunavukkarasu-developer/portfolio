@@ -6,6 +6,7 @@ description: "Learn how to build a full-featured point-of-sale system with Strip
 keywords: "Stripe M2 reader, React Native POS, Stripe Terminal SDK, mobile point of sale, card present payments, Bluetooth card reader, React Native payment integration, Stripe Terminal React Native, POS app development, in-person payments"
 author: "Kliotech"
 date: "2026-03-21"
+popularTags: React Native, Tailwind CSS, Stripe M2
 ---
 
 # How to Integrate Stripe M2 Reader in a React Native POS App
