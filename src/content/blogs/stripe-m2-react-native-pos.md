@@ -11,7 +11,7 @@ popularTags: React Native, Tailwind CSS, Stripe M2
 
 # How to Integrate Stripe M2 Reader in a React Native POS App
 
-Building a point-of-sale (POS) system that accepts in-person card payments is one of the most rewarding — and challenging — things you can do with React Native. After months of building **SmartPOS**, a production React Native POS app powered by the Stripe M2 card reader, we're sharing everything we learned: the architecture, the gotchas, and the patterns that actually work.
+Building a point-of-sale (POS) system that accepts in-person card payments is one of the most rewarding — and challenging — things you can do with React Native. After months of building **POS**, a production React Native POS app powered by the Stripe M2 card reader, we're sharing everything we learned: the architecture, the gotchas, and the patterns that actually work.
 
 This post covers the full journey — from Bluetooth reader discovery to capturing payments to processing refunds.
 
